@@ -1,0 +1,109 @@
+---
+title: "FinalePackageLeman"
+author: "Leman Binokay"
+date: "10 01 2022"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+**INTRODUCTION**
+
+This is an R package (FinalePackageLeman) document. FinalePackageLeman R package has 3 functions which are *is.all.unique*, *missing.NOs* and *product.of.the.others*.
+
+**Function 1 - is.all.unique**
+
+This function checks string, if it consists of different characters or not. It takes a string and splits its characters.Then,it compares length of the characters and length of the unique characters in a given string. After that, result is written as *all unique*, if the string consists of unique characters.
+Result is written as *duplicates found*, if the string consists of same characters.
+
+**R code**
+
+```{r}
+
+is.all.unique <- function(x){
+
+  # Takes a string and splits its characters.
+  # Unlist it to make the string turn into character by character
+  string.split<-unlist(strsplit(x, ""))
+
+  # Takes length of the characters to determine how many characters are in the given string.
+  # Takes length of the unique characters to determine how many unique characters are in the given string.
+  # Controls whether the length of the characters and unique characters are equal or not.
+  if (length(string.split) == length(unique(string.split))){
+
+    # Writes all unique if the length of the characters and unique characters are equal.
+    cat("all unique")
+  } else{
+
+    # Writes duplicates found if the length the characters and unique characters are not equal.
+    cat ("duplicates found")
+  }
+}
+
+
+```
+
+**Example**
+
+```{r}
+# x is a given string
+x <-"leman"
+is.all.unique(x)
+# x is a given string
+x <-"efe"
+is.all.unique(x)
+```
+ 
+**Function 2 - missing.NOs**
+
+This function finds missing numbers in a given list which consist of numbers between 1 to 100. It takes a list and finds missing numbers by using setdiff function.
+
+**R code**
+
+```{r}
+# Defining the function, this function can find any removed number from the list.
+# Takes a list and finds missing numbers by using setdiff function.
+
+missing.NOs <- function(x) {setdiff(c(1:100), x)}
+```
+
+**Example**
+
+```{r}
+# x is a given list
+x <- c(1:45,48:100)
+missing.NOs(x)
+```
+
+**Function 3 - product.of.the.others**
+
+This function products other numbers in a given vector and writes on it. It creates a vector which consists of missing values and has the same length with a given vector. Then, it makes a loop for each values in a vector. After that, it products of the numbers other then itself.
+
+**R code**
+
+```{r}
+product.of.the.others <- function(x) {
+
+  # Creates a vector which consists of missing values and has the same length with a given vector.
+  PO <- rep(NA, length(x))
+
+  # Makes a loop for each values in a vector.
+  for (i in 1:length(x)) {
+
+    # Products of the numbers other then itself.
+    PO[i] <- prod(x[-i])
+  }
+  return(PO)
+}
+```
+
+**Example**
+
+```{r}
+# x is a given vector
+x <- c(1,2,3,4)
+product.of.the.others(x)
+
+```
+
+
